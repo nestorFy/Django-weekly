@@ -1,0 +1,258 @@
+{% extends "weekly/base.html" %}
+{% load static %}
+{% block title %}Setting{% endblock title %}
+{% block username %}{{ username }}{% endblock username %}
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/setting.css' %}">
+{% endblock style %}
+{% block body %}
+    <div class="left">
+        <div class="leftmenu">
+            <ul>
+                <li><a href="{% url 'weekly_app:settings' set_type='userview' %}">用户管理</a></li>
+                <li><a href="{% url 'weekly_app:project_view' %}">项目维护</a></li>
+                <li><a href="{% url 'weekly_app:settings' set_type='config' %}">系统配置</a></li>
+                <li><a href="{% url 'weekly_app:settings' set_type='process' %}">流程配置</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="right">
+        <div class="rbody">
+            <div class="sbody">
+                <!-- View User form -->
+                {% if label == "userview" %}
+                    <p style="padding-bottom: 5px;border-bottom: 1px solid #d4d4d4;font-weight: 700;">用户列表</p>
+                    <table class="slisttable">
+                        <thead>
+                        <tr>
+                            <th style="width: 2%;">#</th>
+                            <th style="width: 20%;">公司名称</th>
+                            <th style="width: 10%;">所属部门</th>
+                            <th style="width: 10%;">人员角色</th>
+                            <th style="width: 10%;">员工名字</th>
+                            <th style="width: 23%;">邮箱</th>
+                            <th style="width: 25%;">密码</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for emp in employeeList %}
+                            <tr>
+                                <th style="width: 2%;">{{ forloop.counter }}</th>
+                                <td style="width: 20%;">{{ emp.get_company_name_display }}</td>
+                                <td style="width: 10%;">{{ emp.get_department_display }}</td>
+                                <td style="width: 10%;">{{ emp.get_role_display }}</td>
+                                <td style="width: 10%;">{{ emp.username }}</td>
+                                <td style="width: 23%;">
+                                    <a href="{% url 'weekly_app:alter' 'user' emp.email %}">{{ emp.email }}</a>
+                                </td>
+                                <td style="width: 25%;">{{ emp.password }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <a class="btnlink" href="{% url 'weekly_app:settings' set_type='userEdit' %}">增加用户</a>
+
+                {% endif %}
+                <!-- END View User form -->
+                <!-- Edit user  form -->
+                {% if label == "userEdit" %}
+                    <p style="padding-bottom: 5px;border-bottom: 1px solid #d4d4d4;font-weight: 700;">添加/修改用户</p>
+                    <form class="sform" action="{% url 'weekly_app:settings' set_type='userEdit' %}" method='post'>
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>公司名称</label>
+                            <div>
+                                <select name="company_name">
+                                    {% for ele in companyList %}
+                                        {% if ele.0 == user.company_name %}
+                                            <option value="{{ ele.0 }}" selected="selected"> {{ ele.1 }} </option>
+                                        {% else %}
+                                            <option value="{{ ele.0 }}"> {{ ele.1 }} </option>
+                                        {% endif %}
+
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>所属部门</label>
+                            <div>
+                                <select name="department">
+                                    {% for ele in departmentList %}
+                                        <option value="{{ ele.0 }}"> {{ ele.1 }} </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>用户角色</label>
+                            <div>
+                                <select name="role">
+                                    {% for ele in roleList %}
+                                        <option value="{{ ele.0 }}"> {{ ele.1 }} </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>员工名称</label>
+                            <div>
+                                <input autocomplete="off" name="emplayeeName" {% if s_label == "alter" %}
+                                       value="{{ user.username }}" {% endif %}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>邮箱地址</label>
+                            <div>
+                                <input autocomplete="off" name="email" {% if s_label == "alter" %}readonly
+                                       value="{{ user.email }}" {% endif %}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>用户密码</label>
+                            <div>
+                                <input type="password" name="password" {% if s_label == "alter" %}
+                                       value="{{ user.password }}" {% endif %}>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-submit" type="submit" {% if s_label == "add" %}
+                                    name="save" {% elif s_label == "alter" %} name="alter" {% endif %}>保存
+                            </button>
+                            {% if s_label == 'alter' %}
+                                <button class="btn btn-cancel" type="submit" name="delete">删除</button>
+                            {% endif %}
+                            {% if s_label == 'add' %}
+                                <button class="btn btn-cancel" type="submit" name="cancel">返回</button>
+                            {% endif %}
+                        </div>
+                    </form>
+                {% endif %}
+                <!-- END Edit user  form -->
+
+                <!-- View project form -->
+                {% if label == "projectview" %}
+                    <p style="padding-bottom: 5px;border-bottom: 1px solid #d4d4d4;font-weight: 700;">项目列表</p>
+                    <table class="slisttable">
+                        <thead>
+                        <tr>
+                            <th style="width: 10%;">#</th>
+                            <th style="width: 20%;">项目编号</th>
+                            <th style="width: 30%;">项目名称</th>
+                            <th style="width: 20%;">项目开始时间</th>
+                            <th style="width: 20%;">项目结束时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for pro in project_lists %}
+                            <tr>
+                                <th style="width: 10%;">{{ forloop.counter }}</th>
+                                <td style="width: 20%;"><a
+                                        href="{% url 'weekly_app:alter' 'project' pro.project_number %}">{{ pro.project_number }}</a>
+                                </td>
+                                <td style="width: 30%;">{{ pro.project_name }}</td>
+                                <td style="width: 20%;">{{ pro.project_start_time }}</td>
+                                <td style="width: 20%;">{{ pro.project_end_time }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <a class="btnlink" href="{% url 'weekly_app:project_edit' edit_type='add' %}">添加项目</a>
+
+                {% endif %}
+                <!-- END View project form -->
+                <!-- Edit project  form -->
+                {% if label == "projectEdit" %}
+                    <p style="padding-bottom: 5px;border-bottom: 1px solid #d4d4d4;font-weight: 700;">添加/修改项目</p>
+                    <form class="sform" action="{% url 'weekly_app:project_edit' edit_type='add' %}" method='post'>
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label>项目编号</label>
+                            <div>
+                                <input autocomplete="off" name="project_number" {% if s_label == "alter" %}readonly value="{{ project.project_number }}" {% endif %}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>项目名称</label>
+                            <div>
+                                <input autocomplete="off" name="project_name" {% if s_label == "alter" %}readonly value="{{ project.project_name }}" {% endif %}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>项目开始时间</label>
+                            <div>
+                                <input class="project-date" type="date" name="project_start_time" id="startDate"  value="" onkeypress="javascript:return false;" {% if s_label == "alter" %}readonly value="{{ project_number.project_start_time }}" {% endif %}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>项目结束时间</label>
+                            <div>
+                                <input class="project-date" type="date" name="project_end_time" id="endDate" value="" onkeypress="javascript:return false;" {% if s_label == "alter" %} value="{{ project_number.project_end_time }}" {% endif %}>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-submit" type="submit" {% if s_label == "add" %} name="save" {% elif s_label == "alter" %} name="alter" {% endif %}>保存</button>
+                            {% if s_label == 'alter' %} <button class="btn btn-cancel" type="submit" name="delete">删除</button> {% endif %}
+                            {% if s_label == 'add' %} <button class="btn btn-cancel" type="submit" name="cancel">返回</button> {% endif %}
+                        </div>
+                    </form>
+                {% endif %}
+                <!-- END Edit project  form -->
+
+                <!-- setting Configurations -->
+                {% if label == "config" %}
+                    <p style="padding-bottom: 5px;border-bottom: 1px solid #d4d4d4;font-weight: 700;">系统配置项，便于以后维护</p>
+                    <form class="sconfiguartion" action="{% url 'weekly_app:settings' set_type='config' %}"
+                          method="POST">
+                        {% csrf_token %}
+                        <table>
+                            <tr class="sctr">
+                                <td>周报编号</td>
+                                <td><input name="weeklyNo" value="{{ weekly_cycle }}"></td>
+
+                            </tr>
+                            <tr class="sctr">
+                                <td>时间范围</td>
+                                <td><input name="timeLimit" value="{{ monday }}-{{ friday }}"></td>
+                            </tr>
+                            <tr>
+                                <td>启用时间限制</td>
+                                <td>
+                                    <select name="status">
+                                        {% for ele in statusList %}
+                                            <option value="{{ ele.0 }}"> {{ ele.1 }} </option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- <a class="btnlink"  href="">保存</a> -->
+                        <button class="btnlink btn" type="submit" style="margin-top: 40px;">保存</button>
+                    </form>
+                {% endif %}
+                <!-- setting Configurations -->
+
+                <!-- Process configuration -->
+                {% if label == "process" %}
+                {% endif %}
+                <!-- End Process configuration-->
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+
+{% block script %}
+    <script type="text/javascript">
+        var startDate = document.getElementById("startDate");
+        var endDate = document.getElementById("endDate")
+        var date = new Date();
+        var cur_year = date.getFullYear();
+        var cur_month = date.getMonth() + 1;
+        String(cur_month).length < 2 ? (cur_month = "0" + cur_month) : cur_month;
+        var cur_day = date.getDay();
+        String(cur_day).length < 2 ? (cur_day = "0" + cur_day) : cur_day;
+        var cur_date = cur_year + "-" + cur_month + "-" + cur_day;
+        startDate.value = cur_date;
+        endDate.value = cur_date;
+    </script>
+{% endblock script %}

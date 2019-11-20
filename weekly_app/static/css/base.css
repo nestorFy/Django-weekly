@@ -1,0 +1,125 @@
+.menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    background: linear-gradient(to top right, #2ca1f7, #1f9af5);
+}
+
+.menu .logo {
+    float: left;
+    line-height: 64px;
+    text-align: center;
+    width: 128px;
+    margin-left: 30px;
+}
+
+.menu ul {
+    float: left;
+    margin-left: 64px;
+}
+
+.menu ul li {
+    display: inline;
+    line-height: 64px;
+}
+
+.ulmain li {
+    margin-right: 35px;
+}
+
+.menu ul li a:hover,
+.menu ul li a:link,
+.menu ul li a:visited {
+    color: #fff;
+}
+
+.uluser {
+    display: inline;
+    float: right;
+    color: #fff;
+    font-size: 14px;
+    line-height: 64px;
+}
+
+.uluser span {
+    margin-right: 15px;
+}
+
+.uluser span a:hover,
+.uluser span a:visited,
+.uluser span a:link {
+    color: #fff;
+}
+
+.basebody {
+    width: 100%;
+    position: absolute;
+    top: 65px;
+    bottom: 0px;
+    height: auto;
+}
+
+.left {
+    width: 180px;
+    height: 100%;
+    float: left;
+    background: #f8f9fa;
+    border-right: 1px solid #d4d4d4;
+}
+
+.left .leftmenu {
+    padding: 10px 0px;
+    height: 100%;
+}
+
+.left .leftmenu ul {
+    margin-top: 10px;
+}
+
+.left .leftmenu ul li {
+    height: 34px;
+    font-size: 14px;
+    line-height: 34px;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.left .leftmenu ul li:hover {
+    background: #1f9af5;
+}
+
+.left .leftmenu ul li a {
+    color: #000;
+    font-weight: 500;
+}
+
+.left .leftmenu ul li:hover a {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.right {
+    height: 100%;
+    margin-left: 180px;
+    padding: 10px;
+}
+
+.right .rbody {
+    height: 100%;
+    background: #ffffff;
+}
+
+.foot {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 48px;
+    border-top: 1px solid #ebebeb;
+    background: #f5f6f5;
+    color: #777;
+    padding: 0 15px;
+}

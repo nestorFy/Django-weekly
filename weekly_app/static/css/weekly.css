@@ -1,0 +1,339 @@
+.right {
+    border: none;
+    overflow: auto;
+}
+
+.right::-webkit-scrollbar {
+    display: none;
+}
+
+.weekly-write {
+    font-size: 14px;
+}
+
+.weekly-write table {
+    width: 100%;
+}
+
+.weekly-write table tr td {
+    height: 60px;
+    padding: 4px 10px;
+}
+
+.weekly-write table tr label {
+    display: block;
+    vertical-align: bottom;
+    text-align: right;
+}
+
+.weekly-write table tr input {
+    width: 100%;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.weekly-write table tr textarea {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btnsubmit {
+    display: block;
+    margin-left: 50%;
+    padding: 3px 8px;
+    width: 120px;
+    line-height: 24px;
+    background: #02a8bd;
+    -webkit-border-radius: 10px;
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, .25);
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+}
+
+.btn-new {
+    width: 134px;
+    margin-left: 45%;
+    background-color: #02a8bd;
+    color: #fff;
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    border: 1px solid transparent;
+}
+
+.btnsubmit:hover {
+    background: linear-gradient(#178be0, #55768e);
+    color: #fff;
+}
+
+
+.btn-new:hover {
+    background: #07727f;
+    color: #fff;
+}
+
+/* END writting style */
+
+/* View Weekly Style */
+/* User List */
+.weeklytable {
+    width: 100%;
+    text-align: left;
+    /*min-width: 610px;*/
+}
+
+.weeklytable thead {
+    background-color: rgba(31, 154, 245, 0.6);
+    color: #fff;
+}
+
+.weeklytable tbody {
+    height: 368px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.weeklytable tbody::-webkit-scrollbar {
+    display: none;
+}
+
+.weeklytable thead tr,
+.weeklytable tbody tr {
+    height: 36px;
+    padding-top: 8px;
+    width: 100%;
+}
+
+.weeklytable th,
+.weeklytable td,
+.weeklytable tr,
+.weeklytable thead,
+.weeklytable tbody {
+    display: block;
+}
+
+.weeklytable thead th,
+.weeklytable tbody td,
+.weeklytable tbody th {
+    float: left;
+    font-size: .875rem;
+}
+
+.weeklytable tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.weeklytable tbody tr td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* END view weekly Style */
+
+/* new test Style */
+
+.row-title {
+    margin-top: 14px;
+    border: none;
+    border-top: 1px solid #eee;
+    width: 100%;
+}
+
+.row-title legend span{
+    margin-left: 8px;
+    margin-right: 81px;
+    padding: 0 4px;
+    color: #0c0c0d;
+}
+
+.row-title legend button{
+    cursor: pointer;
+    background-color: #e5e6f1;
+    border: none;
+    color: rgba(50, 56, 88, 0.82);
+    border-radius: 4px;
+    padding: 2px 16px 4px;
+    letter-spacing: 2px;
+    font-size: 8px;
+}
+.row-title legend button:hover{
+    background: #5bc0de;
+    border-color: #e5e6f1;
+    color: white;
+}
+
+.weekly-subtitle {
+    height: 32px;
+    line-height: 32px;
+}
+
+.weekly-subtitle label {
+    color: #8e8e8e;
+}
+
+.weekly-subtitle input {
+    border: none;
+    padding-left: 4px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+
+.job li,
+#olplan li {
+    height: 32px;
+    line-height: 32px;
+    margin-left: 20px
+}
+
+.job-project-select {
+    width: 124px;
+    padding: 2px 4px;
+    font-size: 12px;
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.job .job-content,
+.job .progress-value {
+    border-style: none;
+    border-bottom: 1px solid #cccccc;
+}
+
+.job-content {
+    width: 400px;
+    border-style: none;
+    border-bottom: 1px solid #cccccc;
+}
+
+.job .progress-value {
+    width: 22px;
+    text-align: center;
+}
+
+.job label,
+#olplan label {
+    height: 24px;
+    margin-left: 5px;
+    color: #8e8e8e;
+}
+
+.job > li > label span,
+#olplan > li > label span {
+    color: red;
+}
+
+.job li > div,
+#olplan input > div {
+    margin-right: 15px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 200px;
+    height: 20px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+}
+
+.job li > div > div,
+#olplan input > div > div {
+    float: left;
+    width: 0%;
+    height: 100%;
+    font-size: 12px;
+    line-height: 21px;
+    text-align: center;
+    background-color: #00b669;
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
+    border-radius: 5px 0 0 5px;
+}
+
+.upper-layer {
+    border-radius: 5px;
+}
+
+.job li > div > div .display-value {
+    color: #666666;
+    margin-left: 10px;
+}
+
+/* Planning Style */
+.job li > div > div {
+    text-align: center;
+}
+
+/* End Planning Style */
+/* button */
+.btn-add-record,
+.btn-weekly-content-submit {
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.btn-add-record {
+    float: right;
+    margin-right: 48px;
+    padding: 2px 16px;
+    background: #5bc0de;
+    border-color: #46b8da;
+    font-size: 12px;
+}
+
+.btn-add-record:hover {
+    background: #31b0d5;
+    border-color: #269abc;
+}
+
+.btn-weekly-content-submit {
+    width: 134px;
+    background-color: #02a8bd;
+    padding: 4px 12px;
+}
+
+.btn-weekly-content-submit:hover {
+    background: #348ff5;
+    border-color: #12a8f5;
+    color: #fff;
+}
+
+.form-textarea {
+    height: auto;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* end TEST style*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

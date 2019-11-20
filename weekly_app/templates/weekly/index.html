@@ -1,0 +1,60 @@
+{% extends "weekly/base.html" %}
+{% load static %}
+{% block title %}Weekly Manager{% endblock title %}
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">{% endblock style %}
+{% block body %}
+    <div class="left">
+        <div class="leftup">
+            <h3 style="text-align: left;">统计</h3>
+            <h5>总人数: {{ total_people }}</h5>
+            <h5>周报提交人数: {{ number_of_weekly_reports }}</h5>
+            <h5>周报未提交人数: {{ number_of_people_not_submitted }}</h5>
+
+        </div>
+        <div class="leftmiddle">
+            <div class="leftmiddletitle">
+                <span>未提交人员及未提交说明</span>
+            </div>
+            <ul>
+                <li>--- ---</li>
+                <li>--- ---</li>
+                <li>--- ---</li>
+                <li>--- ---</li>
+                <li>--- ---</li>
+                <li>--- ---</li>
+                <li>--- ---</li>
+                <li>--- ---</li>
+            </ul>
+        </div>
+    </div>
+    <div class="right">
+        <div class="index-content">
+            <table class="index-table">
+                <tr class="table-head">
+                    <td style="width: 100px;">员工名字</td>
+                    <td>本周工作</td>
+                    <td>下周计划</td>
+                    <td>存在问题</td>
+                </tr>
+                {% for username, value in index_content.items %}
+                    <tr class="table-content">
+                        <td style="width: 60px;">{{ username }}</td>
+                        <td>
+                            {% for ele in value.work %}
+                                <li>{{ ele }}</li>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            {% for ele in value.plan %}
+                                <li>{{ ele }}</li>
+                            {% endfor %}
+                        </td>
+                        <td style="width: 140px;">{{ value.question }}</td>
+                    </tr>
+
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock body %}
