@@ -1,0 +1,25 @@
+{% extends 'weekly/base.html' %}
+{% block content %}
+    <div class="pj-add-form">
+        <form method="POST" action="{% url 'weekly:project_add' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Project name</label>
+                <input name="project_name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Start date</label>
+                <input name="start_date" type="date" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>End date</label>
+                <input name="end_date" type="date" value="0000/00/00" class="form-control" required>
+            </div>
+            <div><label>{{ error }}</label></div>
+            <div class="bd-example pj-add-btn">
+                <button type="submit" class="btn btn-primary"> Add </button>
+                <a class="btn btn-primary pj-add-btn-double" href="{% url 'weekly:project' %}">Back</a>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

@@ -1,0 +1,95 @@
+{#{% extends "weekly/base.html" %}#}
+{#{% block content %}#}
+{#    <div class="card text-center pj-add-form pj-add-form-login">#}
+{#        <div class="card-header">#}
+{#            User Register#}
+{#        </div>#}
+{#        <form method="post" action="{% url 'users:register' %}">#}
+{#            {% csrf_token %}#}
+{#            <div class="card-body" style="text-align: left;">#}
+{#                <div class="form-group">#}
+{#                    <label for="exampleInputPassword1">{{ form.username.label_tag }}</label>#}
+{#                    <input type="text" class="form-control" name="username" placeholder="Username" autocomplete="off">#}
+{#                </div>#}
+{#                <div class="form-group">#}
+{#                    <label for="exampleInputEmail1">Mail address:</label>#}
+{#                    <input type="email" class="form-control" aria-describedby="emailHelp"#}
+{#                           name="email" placeholder="Enter email">#}
+{#                </div>#}
+{##}
+{#                <div class="form-group">#}
+{#                    <label for="exampleInputPassword1">{{ form.password1.label_tag }}</label>#}
+{#                    <input type="password" name="password1" class="form-control" placeholder="Password">#}
+{#                </div>#}
+{##}
+{#                <div class="form-group">#}
+{#                    <label for="exampleInputPassword1">{{ form.password2.label_tag }}</label>#}
+{#                    <input type="password" name="password2" class="form-control" placeholder="Password">#}
+{#                </div>#}
+{#                {% if form.errors %}#}
+{#                    {% for error in form.errors.values %}#}
+{#                        <ul class="list-group">#}
+{#                            <li style="text-align: left;list-style: none;color: red;"#}
+{#                                class="list-group-item-action">{{ error }}</li>#}
+{#                        </ul>#}
+{#                    {% endfor %}#}
+{#                {% endif %}#}
+{#                <div style="text-align: center;">#}
+{#                    <input type="submit" class="btn btn-primary" value="register">#}
+{#                    <input type="hidden" name="next" value="{% url 'weekly:index' %}">#}
+{#                </div>#}
+{##}
+{#            </div>#}
+{##}
+{#        </form>#}
+{##}
+{#{% endblock content %}#}
+
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <form class="form-horizontal" role="form" method="POST" action="{% url 'register' %}">
+        <div class="form-group {% if register_form.errors.email %}errorput{% endif %}">
+            <label  class="col-sm-2 control-label">email</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="email" name="email" placeholder="请输入邮箱">
+            </div>
+        </div>
+        <div class="form-group {% if register_form.errors.password %}errorput{% endif %}">
+            <label  class="col-sm-2 control-label">pass</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
+            </div>
+        </div>
+        <div class="form-group {% if register_form.errors.captcha %}errorput{% endif %}">
+{#            <div class="col-sm-10">#}
+{#                {{ register_form.captcha }}#}
+{#            </div>#}
+        </div>
+
+        <div class="error btns" id="jsEmailTips">
+            {% for key,error in register_form.errors.items %}
+                {{ key }} - {{ error }}
+            {% endfor %}
+            {{ msg }}
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-default">Register</button>
+            </div>
+        </div>
+        {% csrf_token %}
+    </form>
+    <div>
+        <a href="{% url 'login' %}">去登录</a>
+    </div>
+</body>
+</html>

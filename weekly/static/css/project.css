@@ -1,0 +1,42 @@
+.bd-example{
+    padding: .5rem;
+    margin-right: 0;
+    margin-left: 0;
+    border-width: .2rem;
+}
+.bd-example .pj-btn-add{
+    padding: 4px .75rem;
+}
+
+.pj-add-btn-double{
+    margin-left: 16px;
+}
+.pj-add-btn-size{
+    width: 120px;
+    height: 34px;
+    padding: 0;
+    line-height: 30px;
+}
+
+.pj-add-form{
+    width: 40%;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: .8rem 0 .5rem;
+}
+.pj-add-form-login{
+    padding: 0;
+    margin-top: 6%;
+}
+.pj-add-btn{
+    text-align: center;
+}
+
+.pj-add-form .form-group input::-webkit-outer-spin-button,
+.pj-add-form .form-group input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.pj-add-form .form-group input[type="number"] {
+    -moz-appearance: textfield;
+}

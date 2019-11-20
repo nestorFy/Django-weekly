@@ -1,0 +1,34 @@
+{% extends 'weekly/base.html' %}
+
+{% block content %}
+    <div class="bd-example">
+        <a class="btn btn-primary " href="{% url 'weekly:conf_weekly_add' %}">Add a record</a>
+    </div>
+    {% if conf_list %}
+    <div class="table-responsive-md">
+        <table class="table table-striped table-sm">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Weekly Cycle</th>
+                <th scope="col">Weekly No</th>
+                <th scope="col">Create Time</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for conf in conf_list %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{ conf.weekly_cycle }}</td>
+                    <td>{{ conf.weekly_no }}</td>
+                    <td>{{ conf.create_no_time|date:"Y-m-d H:m:s" }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        {% else %}
+        <label>暂时没有项目记录。。。</label>
+    {% endif %}
+
+{% endblock content %}

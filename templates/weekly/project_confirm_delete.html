@@ -1,0 +1,17 @@
+{% extends 'weekly/base.html' %}
+{% block content %}
+    <div class="pj-add-form">
+        <form action="" method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Are you sure you want to delete "{{ object.project_name }}" ?</label>
+            </div>
+
+            <button type="submit" class="btn btn-danger">Confirm</button>
+            <a href="{% url 'weekly:project' %}" class="btn btn-warning pj-add-btn-double">Back</a>
+
+
+        </form>
+    </div>
+{% endblock content %}

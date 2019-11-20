@@ -1,0 +1,28 @@
+{% extends 'weekly/base.html' %}
+
+{% block content %}
+    <div class="bd-example pj-add-form">
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group ">
+                <label>{{ form.weekly_no.label }}</label>
+                {#                <input name="form.weekly_no" class="form-control">#}
+                {{ form.weekly_no }}
+            </div>
+            <div class="form-group">
+                <label>{{ form.weekly_cycle.label }}</label>
+                {{ form.weekly_cycle }}
+            </div>
+            <div class="form-group">
+                {% for error in form.errors.values %}
+                    <label><em>{{ error }}</em></label>
+                {% endfor %}
+            </div>
+            <button type="submit" class="btn btn-primary ">Submit</button>
+            <a class="btn btn-primary pj-add-btn-double" href="{% url 'weekly:conf_weekly' %}">Back</a>
+        </form>
+    </div>
+
+
+
+{% endblock content %}

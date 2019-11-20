@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/project.css' %}">
+    <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% block style %}{{ style }}{% endblock style %}
+</head>
+<body>
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Weekly</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url "weekly:index" %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Weekly</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Setting
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{% url 'weekly:project' %}">Project config</a>
+                        <a class="dropdown-item" href="{% url 'weekly:conf_weekly' %}">Weekly config</a>
+                        <a class="dropdown-item" href="{% url 'users:user_list' %}">User config</a>
+                        <a class="dropdown-item" href="#">Other config</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <span class="navbar-text">
+            {% if user.is_authenticated %}
+                Hello, {{ user.username }}.
+                <a href="{% url 'users:logout' %}" class="stretched-link">log out</a>
+            {% else %}
+                <a href="{% url 'users:login' %}" class="primary primary-light">log in</a>
+            {% endif %}
+        </span>
+    </nav>
+</div>
+<div class="container-fluid">
+    {% block content %}{{ content }}{% endblock content %}
+</div>
+
+</body>
+</html>
